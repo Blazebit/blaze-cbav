@@ -9,12 +9,12 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- *
+ * 
  * @author Christian Beikov
  * @since 0.1.2
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.ANNOTATION_TYPE)
 public @interface ValueConstraint {
-    Class<? extends ValueConstraintValidator> value();
+	Class<? extends ValueConstraintValidator> value();
 }

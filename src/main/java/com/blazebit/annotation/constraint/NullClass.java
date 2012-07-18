@@ -4,9 +4,10 @@
 package com.blazebit.annotation.constraint;
 
 /**
- *
+ * 
  * @author Christian Beikov
  */
 public final class NullClass {
-    private NullClass(){}
+	private NullClass() {
+	}
 }
