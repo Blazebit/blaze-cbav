@@ -7,7 +7,7 @@ What is it?
 
 BlazeCBAV is a framework for annotation validation via declarative constraints,
 that can be used to validate the usage of annotations and provide custom error messages
-for a wrong usage, within Java SE 6 Environments. The framework uses the
+for a wrong usage, within Java SE 6 environments. The framework uses the
 Annotation Processing Tool for the validation of the annotations and the
 population of custom defined error messages.
 
