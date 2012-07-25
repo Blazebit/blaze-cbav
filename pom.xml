@@ -10,7 +10,7 @@
     </parent>
     
     <artifactId>blaze-cbav</artifactId>
-    <version>0.1.2</version>
+    <version>0.1.3-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>BlazeCBAV</name>
