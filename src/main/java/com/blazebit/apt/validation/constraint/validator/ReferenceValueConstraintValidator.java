@@ -1,7 +1,7 @@
 /*
  * Copyright 2011 Blazebit
  */
-package com.blazebit.annotation.constraint.validator;
+package com.blazebit.apt.validation.constraint.validator;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -19,9 +19,8 @@ import javax.lang.model.element.TypeElement;
 import javax.lang.model.type.DeclaredType;
 import javax.tools.Diagnostic;
 
-import com.blazebit.annotation.apt.AnnotationProcessingUtil;
-import com.blazebit.annotation.constraint.ConstraintScope;
-import com.blazebit.annotation.constraint.NullClass;
+import com.blazebit.apt.validation.AnnotationProcessingUtils;
+import com.blazebit.apt.validation.constraint.ConstraintScope;
 
 /**
  * 
@@ -37,15 +36,15 @@ public class ReferenceValueConstraintValidator extends
 			RoundEnvironment roundEnv, TypeElement annotationType,
 			AnnotationMirror annotation, ExecutableElement annotationMember,
 			Element e, Object value) {
-		AnnotationValue referencedAnnotationClassValue = AnnotationProcessingUtil
+		AnnotationValue referencedAnnotationClassValue = AnnotationProcessingUtils
 				.getAnnotationElementValue(procEnv, annotation,
 						"referencedAnnotationClass");
-		AnnotationValue referencedAnnotationMemberValue = AnnotationProcessingUtil
+		AnnotationValue referencedAnnotationMemberValue = AnnotationProcessingUtils
 				.getAnnotationElementValue(procEnv, annotation,
 						"referencedAnnotationMember");
-		AnnotationValue nullableValue = AnnotationProcessingUtil
+		AnnotationValue nullableValue = AnnotationProcessingUtils
 				.getAnnotationElementValue(procEnv, annotation, "nullable");
-		AnnotationValue scopeValue = AnnotationProcessingUtil
+		AnnotationValue scopeValue = AnnotationProcessingUtils
 				.getAnnotationElementValue(procEnv, annotation, "scope");
 
 		DeclaredType referencedAnnotationClass = (DeclaredType) referencedAnnotationClassValue
@@ -71,7 +70,7 @@ public class ReferenceValueConstraintValidator extends
 
 				for (Element classMemberElement : procEnv.getElementUtils()
 						.getAllMembers((TypeElement) e.getEnclosingElement())) {
-					if (AnnotationProcessingUtil
+					if (AnnotationProcessingUtils
 							.findAnnotationMirror(procEnv, classMemberElement,
 									referencedAnnotationTypeElement) != null) {
 						elements.get(e).add(classMemberElement);
@@ -86,7 +85,7 @@ public class ReferenceValueConstraintValidator extends
 
 				for (Element classMemberElement : procEnv.getElementUtils()
 						.getAllMembers((TypeElement) e)) {
-					if (AnnotationProcessingUtil
+					if (AnnotationProcessingUtils
 							.findAnnotationMirror(procEnv, classMemberElement,
 									referencedAnnotationTypeElement) != null) {
 						elements.get(e).add(classMemberElement);
@@ -95,7 +94,7 @@ public class ReferenceValueConstraintValidator extends
 
 				break;
 			case ANNOTATION_TYPE:
-				AnnotationMirror stereotypeAnnotationMirror = AnnotationProcessingUtil
+				AnnotationMirror stereotypeAnnotationMirror = AnnotationProcessingUtils
 						.findAnnotationMirror(procEnv, e,
 								"javax.enterprise.inject.Stereotype");
 
@@ -127,7 +126,7 @@ public class ReferenceValueConstraintValidator extends
 								.getAllMembers(
 										(TypeElement) stereotypeAnnotatedElement
 												.getEnclosingElement())) {
-							if (AnnotationProcessingUtil.findAnnotationMirror(
+							if (AnnotationProcessingUtils.findAnnotationMirror(
 									procEnv, classMemberElement,
 									referencedAnnotationTypeElement) != null) {
 								elements.get(stereotypeAnnotatedElement).add(
@@ -147,7 +146,7 @@ public class ReferenceValueConstraintValidator extends
 								.getElementUtils()
 								.getAllMembers(
 										(TypeElement) stereotypeAnnotatedElement)) {
-							if (AnnotationProcessingUtil.findAnnotationMirror(
+							if (AnnotationProcessingUtils.findAnnotationMirror(
 									procEnv, classMemberElement,
 									referencedAnnotationTypeElement) != null) {
 								elements.get(stereotypeAnnotatedElement).add(
@@ -176,7 +175,7 @@ public class ReferenceValueConstraintValidator extends
 			}
 			break;
 		case ELEMENT:
-			if (AnnotationProcessingUtil.findAnnotationMirror(procEnv, e,
+			if (AnnotationProcessingUtils.findAnnotationMirror(procEnv, e,
 					referencedAnnotationTypeElement) != null) {
 				elements.put(e, new HashSet<Element>(Arrays.asList(e)));
 			}
@@ -187,7 +186,7 @@ public class ReferenceValueConstraintValidator extends
 		OUTER: for (Map.Entry<Element, Set<Element>> elementEntry : elements
 				.entrySet()) {
 			for (Element lookupElement : elementEntry.getValue()) {
-				AnnotationMirror referencedAnnotationMirror = AnnotationProcessingUtil
+				AnnotationMirror referencedAnnotationMirror = AnnotationProcessingUtils
 						.findAnnotationMirror(procEnv, lookupElement,
 								referencedAnnotationTypeElement);
 				Object memberName = null;
@@ -195,7 +194,7 @@ public class ReferenceValueConstraintValidator extends
 				// Should never be null here
 				assert (referencedAnnotationMirror != null);
 
-				AnnotationValue referencedAnnotationValue = AnnotationProcessingUtil
+				AnnotationValue referencedAnnotationValue = AnnotationProcessingUtils
 						.getAnnotationElementValue(procEnv,
 								referencedAnnotationMirror,
 								referencedAnnotationMemberValue.getValue()
@@ -225,7 +224,7 @@ public class ReferenceValueConstraintValidator extends
 
 			if (nullable) {
 				if (annotationMember.getDefaultValue() == null
-						&& value.toString().equals(NullClass.class.getName())) {
+						&& value.toString().equals(Object.class.getName())) {
 					// If no default value is given, but the constraint may be
 					// nullable we check for equallity of the value with
 					// NullClass
@@ -242,7 +241,7 @@ public class ReferenceValueConstraintValidator extends
 
 			procEnv.getMessager().printMessage(
 					Diagnostic.Kind.ERROR,
-					(String) AnnotationProcessingUtil
+					(String) AnnotationProcessingUtils
 							.getAnnotationElementValue(procEnv, annotation,
 									"errorMessage").getValue(),
 					elementEntry.getKey(), annotation);

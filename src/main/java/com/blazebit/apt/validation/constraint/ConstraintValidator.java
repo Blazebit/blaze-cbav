@@ -1,7 +1,7 @@
 /*
  * Copyright 2011 Blazebit
  */
-package com.blazebit.annotation.constraint;
+package com.blazebit.apt.validation.constraint;
 
 import javax.annotation.processing.ProcessingEnvironment;
 import javax.annotation.processing.RoundEnvironment;

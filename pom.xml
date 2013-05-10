@@ -1,91 +1,92 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    
-    <modelVersion>4.0.0</modelVersion>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-    <parent>
-        <groupId>com.blazebit</groupId>
-        <artifactId>blazebit-parent</artifactId>
-        <version>8</version>
-    </parent>
-    
-    <artifactId>blaze-cbav</artifactId>
-    <version>0.1.9-SNAPSHOT</version>
-    <packaging>jar</packaging>
+	<modelVersion>4.0.0</modelVersion>
 
-    <name>BlazeCBAV</name>
-    <url>http://blazebit.com/cbav</url>
-    <description>Blazebit Constraint Based Annotation Validation</description>
+	<parent>
+		<groupId>com.blazebit</groupId>
+		<artifactId>blazebit-parent</artifactId>
+		<version>8</version>
+	</parent>
 
-    <issueManagement>
-        <system>github</system>
-        <url>https://github.com/Blazebit/blaze-cbav/issues</url>
-    </issueManagement>
+	<artifactId>blaze-cbav</artifactId>
+	<version>0.1.9-SNAPSHOT</version>
+	<packaging>jar</packaging>
 
-    <licenses>
-        <license>
-            <name>Apache License, Version 2.0</name>
-            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-        </license>
-    </licenses>
+	<name>Blazebit Constraint Based Annotation Validation</name>
+	<url>http://blazebit.com/cbav</url>
+	<description>Blazebit Constraint Based Annotation Validation</description>
 
-    <organization>
-        <name>Blazebit</name>
-        <url>http://www.blazebit.com</url>
-    </organization>
-    
-    <scm>
-        <connection>scm:git:git@github.com:Blazebit/blaze-cbav.git</connection>
-        <developerConnection>scm:git:git@github.com:Blazebit/blaze-cbav.git</developerConnection>
-        <url>git@github.com:Blazebit/blaze-cbav.git</url>
-    </scm>
+	<issueManagement>
+		<system>github</system>
+		<url>https://github.com/Blazebit/blaze-cbav/issues</url>
+	</issueManagement>
 
-    <developers>
-        <developer>
-            <id>christian</id>
-            <name>Christian Beikov</name>
-            <email>christian@blazebit.com</email>
-            <organization>Blazebit</organization>
-            <organizationUrl>http://www.blazebit.com</organizationUrl>
-            <timezone>UTC+1</timezone>
-            <roles>
-                <role>Project Owner</role>
-                <role>Committer</role>
-            </roles>
-        </developer>
-        <developer>
-            <id>cchet</id>
-            <name>Thomas Herzog</name>
-            <email>t.herzog@curecomp.com</email>
-            <organization>Curecomp</organization>
-            <organizationUrl>http://www.curecomp.com</organizationUrl>
-            <timezone>UTC+1</timezone>
-            <roles>
-                <role>Committer</role>
-            </roles>
-        </developer>
-    </developers>
+	<licenses>
+		<license>
+			<name>Apache License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+		</license>
+	</licenses>
 
-    <dependencies>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.8.1</version>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
-    
-    <build>
-        <plugins>
-            <plugin>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>${maven.compiler.argument.source}</source>
-                    <target>${maven.compiler.argument.target}</target>
-                    <!-- Disable annotation processing for ourselves. -->
-                    <compilerArgument>-proc:none</compilerArgument>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
+	<organization>
+		<name>Blazebit</name>
+		<url>http://www.blazebit.com</url>
+	</organization>
+
+	<scm>
+		<connection>scm:git:git@github.com:Blazebit/blaze-cbav.git</connection>
+		<developerConnection>scm:git:git@github.com:Blazebit/blaze-cbav.git</developerConnection>
+		<url>git@github.com:Blazebit/blaze-cbav.git</url>
+	</scm>
+
+	<developers>
+		<developer>
+			<id>christian</id>
+			<name>Christian Beikov</name>
+			<email>christian@blazebit.com</email>
+			<organization>Blazebit</organization>
+			<organizationUrl>http://www.blazebit.com</organizationUrl>
+			<timezone>UTC+1</timezone>
+			<roles>
+				<role>Project Owner</role>
+				<role>Committer</role>
+			</roles>
+		</developer>
+		<developer>
+			<id>cchet</id>
+			<name>Thomas Herzog</name>
+			<email>t.herzog@curecomp.com</email>
+			<organization>Curecomp</organization>
+			<organizationUrl>http://www.curecomp.com</organizationUrl>
+			<timezone>UTC+1</timezone>
+			<roles>
+				<role>Committer</role>
+			</roles>
+		</developer>
+	</developers>
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.11</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>${maven.compiler.argument.source}</source>
+					<target>${maven.compiler.argument.target}</target>
+					<!-- Disable annotation processing for ourselves. -->
+					<compilerArgument>-proc:none</compilerArgument>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 </project>

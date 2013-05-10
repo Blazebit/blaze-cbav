@@ -1,15 +1,13 @@
 /*
  * Copyright 2011 Blazebit
  */
-package com.blazebit.annotation.constraint;
+package com.blazebit.apt.validation.constraint;
 
 import java.lang.annotation.Annotation;
 import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import com.blazebit.annotation.constraint.validator.ReferenceValueConstraintValidator;
+import com.blazebit.apt.validation.constraint.validator.ReferenceValueConstraintValidator;
 
 /**
  * An annotation method annotated with this annotation enforces the methods
@@ -21,7 +19,6 @@ import com.blazebit.annotation.constraint.validator.ReferenceValueConstraintVali
  */
 @ValueConstraint(ReferenceValueConstraintValidator.class)
 @Target(ElementType.METHOD)
-@Retention(RetentionPolicy.RUNTIME)
 public @interface ReferenceValueConstraint {
 	Class<? extends Annotation> referencedAnnotationClass();
 

@@ -1,7 +1,7 @@
 /*
  * Copyright 2011 Blazebit
  */
-package com.blazebit.annotation.apt;
+package com.blazebit.apt.validation;
 
 import java.lang.annotation.Annotation;
 import java.util.HashMap;
@@ -20,10 +20,10 @@ import javax.lang.model.element.TypeElement;
 import javax.lang.model.util.ElementFilter;
 import javax.tools.Diagnostic;
 
-import com.blazebit.annotation.constraint.Constraint;
-import com.blazebit.annotation.constraint.ConstraintValidator;
-import com.blazebit.annotation.constraint.ValueConstraint;
-import com.blazebit.annotation.constraint.ValueConstraintValidator;
+import com.blazebit.apt.validation.constraint.Constraint;
+import com.blazebit.apt.validation.constraint.ConstraintValidator;
+import com.blazebit.apt.validation.constraint.ValueConstraint;
+import com.blazebit.apt.validation.constraint.ValueConstraintValidator;
 
 /**
  * Constraint Validator classes must be available in compiled form!
@@ -31,7 +31,7 @@ import com.blazebit.annotation.constraint.ValueConstraintValidator;
  * @author Christian Beikov
  * @since 0.1.2
  */
-@SupportedAnnotationTypes("*")
+@SupportedAnnotationTypes("com.blazebit.apt.validation.constraint.*")
 @SupportedSourceVersion(SourceVersion.RELEASE_6)
 public class ConstraintBasedAnnotationProcessor extends AbstractProcessor {
 
@@ -97,10 +97,10 @@ public class ConstraintBasedAnnotationProcessor extends AbstractProcessor {
 					if (validator != null) {
 						for (Element e : roundEnv
 								.getElementsAnnotatedWith(annotationType)) {
-							AnnotationMirror elementAnnotationMirror = AnnotationProcessingUtil
+							AnnotationMirror elementAnnotationMirror = AnnotationProcessingUtils
 									.findAnnotationMirror(processingEnv, e,
 											annotationType);
-							Object actualValue = AnnotationProcessingUtil
+							Object actualValue = AnnotationProcessingUtils
 									.getAnnotationElementValue(
 											processingEnv,
 											elementAnnotationMirror,
@@ -121,13 +121,13 @@ public class ConstraintBasedAnnotationProcessor extends AbstractProcessor {
 	private Class<?> getConstraintValidatorClass(
 			TypeElement memberAnnotationTypeElement,
 			Class<? extends Annotation> constraintAnnotationClass) {
-		AnnotationMirror constraintAnnotation = AnnotationProcessingUtil
+		AnnotationMirror constraintAnnotation = AnnotationProcessingUtils
 				.findAnnotationMirror(processingEnv,
 						memberAnnotationTypeElement, constraintAnnotationClass);
 		Class<?> constraintValidatorClass = null;
 
 		if (constraintAnnotation != null) {
-			String constraintValidatorClassName = AnnotationProcessingUtil
+			String constraintValidatorClassName = AnnotationProcessingUtils
 					.getAnnotationElementValue(processingEnv,
 							constraintAnnotation, "value").getValue()
 					.toString();

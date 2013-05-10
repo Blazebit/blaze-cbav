@@ -1,14 +1,12 @@
 /*
  * Copyright 2011 Blazebit
  */
-package com.blazebit.annotation.constraint;
+package com.blazebit.apt.validation.constraint;
 
 import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import com.blazebit.annotation.constraint.validator.ParameterConstraintValidator;
+import com.blazebit.apt.validation.constraint.validator.ParameterConstraintValidator;
 
 /**
  * An annotation type A annotated with this annotation enforces methods that are
@@ -19,7 +17,6 @@ import com.blazebit.annotation.constraint.validator.ParameterConstraintValidator
  */
 @Constraint(ParameterConstraintValidator.class)
 @Target(ElementType.ANNOTATION_TYPE)
-@Retention(RetentionPolicy.RUNTIME)
 public @interface ParameterConstraint {
 	Class<?>[] expectedParameterTypes() default {};
 

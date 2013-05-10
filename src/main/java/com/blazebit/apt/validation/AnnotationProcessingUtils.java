@@ -1,7 +1,7 @@
 /*
  * Copyright 2011 Blazebit
  */
-package com.blazebit.annotation.apt;
+package com.blazebit.apt.validation;
 
 import java.lang.annotation.Annotation;
 import java.util.List;
@@ -19,9 +19,9 @@ import javax.lang.model.element.TypeElement;
  * @author Christian Beikov
  * @since 0.1.2
  */
-public class AnnotationProcessingUtil {
+public class AnnotationProcessingUtils {
 
-	private AnnotationProcessingUtil() {
+	private AnnotationProcessingUtils() {
 	}
 
 	public static Map.Entry<? extends ExecutableElement, ? extends AnnotationValue> getAnnotationElement(

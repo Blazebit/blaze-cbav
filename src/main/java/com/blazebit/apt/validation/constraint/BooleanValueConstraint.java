@@ -1,14 +1,12 @@
 /*
  * Copyright 2011 Blazebit
  */
-package com.blazebit.annotation.constraint;
+package com.blazebit.apt.validation.constraint;
 
 import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import com.blazebit.annotation.constraint.validator.BooleanValueConstraintValidator;
+import com.blazebit.apt.validation.constraint.validator.BooleanValueConstraintValidator;
 
 /**
  * An annotation method annotated with this annotation enforces the methods
@@ -21,7 +19,6 @@ import com.blazebit.annotation.constraint.validator.BooleanValueConstraintValida
 @ReturnTypeConstraint(expectedReturnType = boolean.class)
 @ValueConstraint(BooleanValueConstraintValidator.class)
 @Target(ElementType.METHOD)
-@Retention(RetentionPolicy.RUNTIME)
 public @interface BooleanValueConstraint {
 	boolean expectedValue();
 

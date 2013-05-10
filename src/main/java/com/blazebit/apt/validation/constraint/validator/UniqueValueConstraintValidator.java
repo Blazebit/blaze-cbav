@@ -1,7 +1,7 @@
 /*
  * Copyright 2011 Blazebit
  */
-package com.blazebit.annotation.constraint.validator;
+package com.blazebit.apt.validation.constraint.validator;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -18,8 +18,8 @@ import javax.lang.model.element.ExecutableElement;
 import javax.lang.model.element.TypeElement;
 import javax.tools.Diagnostic;
 
-import com.blazebit.annotation.apt.AnnotationProcessingUtil;
-import com.blazebit.annotation.constraint.ConstraintScope;
+import com.blazebit.apt.validation.AnnotationProcessingUtils;
+import com.blazebit.apt.validation.constraint.ConstraintScope;
 
 /**
  * 
@@ -35,7 +35,7 @@ public class UniqueValueConstraintValidator extends
 			RoundEnvironment roundEnv, TypeElement annotationType,
 			AnnotationMirror annotation, ExecutableElement annotationMember,
 			Element e, Object value) {
-		AnnotationValue scopeValue = AnnotationProcessingUtil
+		AnnotationValue scopeValue = AnnotationProcessingUtils
 				.getAnnotationElementValue(procEnv, annotation, "scope");
 
 		ConstraintScope scope = ConstraintScope.valueOf(scopeValue.getValue()
@@ -56,7 +56,7 @@ public class UniqueValueConstraintValidator extends
 
 				for (Element classMemberElement : procEnv.getElementUtils()
 						.getAllMembers((TypeElement) e.getEnclosingElement())) {
-					if (AnnotationProcessingUtil.findAnnotationMirror(
+					if (AnnotationProcessingUtils.findAnnotationMirror(
 							classMemberElement, annotationType) != null) {
 						elements.get(e).add(classMemberElement);
 					}
@@ -70,7 +70,7 @@ public class UniqueValueConstraintValidator extends
 
 				for (Element classMemberElement : procEnv.getElementUtils()
 						.getAllMembers((TypeElement) e)) {
-					if (AnnotationProcessingUtil.findAnnotationMirror(
+					if (AnnotationProcessingUtils.findAnnotationMirror(
 							classMemberElement, annotationType) != null) {
 						elements.get(e).add(classMemberElement);
 					}
@@ -79,7 +79,7 @@ public class UniqueValueConstraintValidator extends
 				break;
 
 			case ANNOTATION_TYPE:
-				AnnotationMirror stereotypeAnnotationMirror = AnnotationProcessingUtil
+				AnnotationMirror stereotypeAnnotationMirror = AnnotationProcessingUtils
 						.findAnnotationMirror(procEnv, e,
 								"javax.enterprise.inject.Stereotype");
 
@@ -111,7 +111,7 @@ public class UniqueValueConstraintValidator extends
 								.getAllMembers(
 										(TypeElement) stereotypeAnnotatedElement
 												.getEnclosingElement())) {
-							if (AnnotationProcessingUtil
+							if (AnnotationProcessingUtils
 									.findAnnotationMirror(procEnv,
 											classMemberElement, annotationType) != null) {
 								elements.get(stereotypeAnnotatedElement).add(
@@ -127,7 +127,7 @@ public class UniqueValueConstraintValidator extends
 								.getElementUtils()
 								.getAllMembers(
 										(TypeElement) stereotypeAnnotatedElement)) {
-							if (AnnotationProcessingUtil
+							if (AnnotationProcessingUtils
 									.findAnnotationMirror(procEnv,
 											classMemberElement, annotationType) != null) {
 								elements.get(stereotypeAnnotatedElement).add(
@@ -167,12 +167,12 @@ public class UniqueValueConstraintValidator extends
 			unique = true;
 
 			for (Element lookupElement : elementEntry.getValue()) {
-				AnnotationMirror referencedAnnotationMirror = AnnotationProcessingUtil
+				AnnotationMirror referencedAnnotationMirror = AnnotationProcessingUtils
 						.findAnnotationMirror(lookupElement, annotationType);
 
 				if (!e.equals(lookupElement)) {
 					if (value
-							.equals(AnnotationProcessingUtil
+							.equals(AnnotationProcessingUtils
 									.getAnnotationElementValue(
 											procEnv,
 											referencedAnnotationMirror,
@@ -187,7 +187,7 @@ public class UniqueValueConstraintValidator extends
 			if (!unique) {
 				procEnv.getMessager().printMessage(
 						Diagnostic.Kind.ERROR,
-						(String) AnnotationProcessingUtil
+						(String) AnnotationProcessingUtils
 								.getAnnotationElementValue(procEnv, annotation,
 										"errorMessage").getValue(), e,
 						annotation);

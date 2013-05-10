@@ -1,7 +1,7 @@
 /*
  * Copyright 2011 Blazebit
  */
-package com.blazebit.annotation.constraint.validator;
+package com.blazebit.apt.validation.constraint.validator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +16,7 @@ import javax.lang.model.type.DeclaredType;
 import javax.lang.model.type.TypeMirror;
 import javax.tools.Diagnostic;
 
-import com.blazebit.annotation.apt.AnnotationProcessingUtil;
+import com.blazebit.apt.validation.AnnotationProcessingUtils;
 
 /**
  * 
@@ -31,10 +31,10 @@ public class ExceptionConstraintValidator extends
 	public void validate(ProcessingEnvironment procEnv,
 			RoundEnvironment roundEnv, TypeElement annotationType,
 			AnnotationMirror annotation, ExecutableElement e) {
-		AnnotationValue expectedExceptionTypes = AnnotationProcessingUtil
+		AnnotationValue expectedExceptionTypes = AnnotationProcessingUtils
 				.getAnnotationElementValue(procEnv, annotation,
 						"expectedExceptions");
-		AnnotationValue strictValue = AnnotationProcessingUtil
+		AnnotationValue strictValue = AnnotationProcessingUtils
 				.getAnnotationElementValue(procEnv, annotation, "strict");
 		Boolean strict = (Boolean) strictValue.getValue();
 
@@ -43,7 +43,7 @@ public class ExceptionConstraintValidator extends
 						.getValue()))) {
 			procEnv.getMessager().printMessage(
 					Diagnostic.Kind.ERROR,
-					(String) AnnotationProcessingUtil
+					(String) AnnotationProcessingUtils
 							.getAnnotationElementValue(procEnv, annotation,
 									"errorMessage").getValue(), e, annotation,
 					expectedExceptionTypes);

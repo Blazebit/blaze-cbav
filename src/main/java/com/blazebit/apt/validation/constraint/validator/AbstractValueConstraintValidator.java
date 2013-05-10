@@ -1,7 +1,7 @@
 /*
  * Copyright 2011 Blazebit
  */
-package com.blazebit.annotation.constraint.validator;
+package com.blazebit.apt.validation.constraint.validator;
 
 import javax.annotation.processing.ProcessingEnvironment;
 import javax.annotation.processing.RoundEnvironment;
@@ -9,7 +9,7 @@ import javax.lang.model.element.AnnotationMirror;
 import javax.lang.model.element.Element;
 import javax.lang.model.element.TypeElement;
 
-import com.blazebit.annotation.constraint.ValueConstraintValidator;
+import com.blazebit.apt.validation.constraint.ValueConstraintValidator;
 
 /**
  * 

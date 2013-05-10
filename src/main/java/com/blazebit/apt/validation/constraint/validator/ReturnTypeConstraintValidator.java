@@ -1,7 +1,7 @@
 /*
  * Copyright 2011 Blazebit
  */
-package com.blazebit.annotation.constraint.validator;
+package com.blazebit.apt.validation.constraint.validator;
 
 import javax.annotation.processing.ProcessingEnvironment;
 import javax.annotation.processing.RoundEnvironment;
@@ -12,7 +12,7 @@ import javax.lang.model.element.TypeElement;
 import javax.lang.model.type.TypeMirror;
 import javax.tools.Diagnostic;
 
-import com.blazebit.annotation.apt.AnnotationProcessingUtil;
+import com.blazebit.apt.validation.AnnotationProcessingUtils;
 
 /**
  * 
@@ -26,10 +26,10 @@ public class ReturnTypeConstraintValidator extends
 	public void validate(ProcessingEnvironment procEnv,
 			RoundEnvironment roundEnv, TypeElement annotationType,
 			AnnotationMirror annotation, ExecutableElement e) {
-		AnnotationValue expectedReturnType = AnnotationProcessingUtil
+		AnnotationValue expectedReturnType = AnnotationProcessingUtils
 				.getAnnotationElementValue(procEnv, annotation,
 						"expectedReturnType");
-		AnnotationValue strictValue = AnnotationProcessingUtil
+		AnnotationValue strictValue = AnnotationProcessingUtils
 				.getAnnotationElementValue(procEnv, annotation, "strict");
 		Boolean strict = (Boolean) strictValue.getValue();
 
@@ -37,7 +37,7 @@ public class ReturnTypeConstraintValidator extends
 				(TypeMirror) expectedReturnType.getValue())) {
 			procEnv.getMessager().printMessage(
 					Diagnostic.Kind.ERROR,
-					(String) AnnotationProcessingUtil
+					(String) AnnotationProcessingUtils
 							.getAnnotationElementValue(procEnv, annotation,
 									"errorMessage").getValue(), e, annotation,
 					expectedReturnType);
